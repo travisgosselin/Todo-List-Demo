@@ -6,6 +6,13 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{562DE28F-3B98-46EE-808B-B5DFB84A75AA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{591AD193-85A4-40D1-9A75-692344CFB487}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		..\branch-strategy\.gitattributes = ..\branch-strategy\.gitattributes
+		.gitignore = .gitignore
+		..\branch-strategy\.gitignore = ..\branch-strategy\.gitignore
+		readme.md = readme.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{351E35E9-18CA-4CEB-9815-2B4AC463A990}"
 EndProject
