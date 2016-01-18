@@ -14,15 +14,18 @@
     "Microsoft.Extensions.Logging": "1.0.0-rc1-final",
     "Microsoft.Extensions.Logging.Console": "1.0.0-rc1-final",
     "Microsoft.Extensions.Logging.Debug": "1.0.0-rc1-final",
-    "TodoListDemo.Data": "1.0.0-*"
+    "TodoListDemo.Data": "1.0.0-*",
+    "EntityFramework.Commands":  "7.0.0-rc1-final",
   },
 
   "commands": {
-    "web": "Microsoft.AspNet.Server.Kestrel"
+    "web": "Microsoft.AspNet.Server.Kestrel",
+    "ef": "EntityFramework.Commands"
   },
 
   "frameworks": {
-    "dnxcore50": { }
+    "dnxcore50": { },
+    "dnx451": { }
   },
 
   "exclude": [

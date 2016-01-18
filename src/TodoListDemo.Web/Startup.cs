@@ -8,6 +8,7 @@ using Microsoft.Data.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using TodoListDemo.Data;
 
 namespace TodoListDemo.Web
 {
@@ -29,12 +30,12 @@ namespace TodoListDemo.Web
         {
             // Add framework services.
             services.AddMvc();
-            //services.AddEntityFramework()
-            //    .AddSqlServer()
-            //    .AddDbContext<TodoListContext>(options =>
-            //    {
-            //        options.UseSqlServer(Configuration["Data:ConnectionString"]);
-            //    });
+            services.AddEntityFramework()
+                .AddSqlServer()
+                .AddDbContext<TodoListContext>(options =>
+                {
+                    options.UseSqlServer(Configuration["Data:ConnectionString"]);
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,9 +48,7 @@ namespace TodoListDemo.Web
             app.UseStaticFiles();
             app.UseMvc();
 
-            //TodoListDemo.
-            // http://aspnetmvc.readthedocs.org/projects/mvc/en/latest/tutorials/mvc-with-entity-framework.html
-
+            SampleData.Inititalize(app.ApplicationServices);
         }
 
         // Entry point for the application.
