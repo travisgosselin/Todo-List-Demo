@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
+using Microsoft.Data.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -12,6 +13,8 @@ namespace TodoListDemo.Web
 {
     public class Startup
     {
+        public IConfigurationRoot Configuration { get; set; }
+
         public Startup(IHostingEnvironment env)
         {
             // Set up configuration sources.
@@ -21,13 +24,17 @@ namespace TodoListDemo.Web
             Configuration = builder.Build();
         }
 
-        public IConfigurationRoot Configuration { get; set; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
             services.AddMvc();
+            //services.AddEntityFramework()
+            //    .AddSqlServer()
+            //    .AddDbContext<TodoListContext>(options =>
+            //    {
+            //        options.UseSqlServer(Configuration["Data:ConnectionString"]);
+            //    });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,10 +44,12 @@ namespace TodoListDemo.Web
             loggerFactory.AddDebug();
 
             app.UseIISPlatformHandler();
-
             app.UseStaticFiles();
-
             app.UseMvc();
+
+            //TodoListDemo.
+            // http://aspnetmvc.readthedocs.org/projects/mvc/en/latest/tutorials/mvc-with-entity-framework.html
+
         }
 
         // Entry point for the application.
