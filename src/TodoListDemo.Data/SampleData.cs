@@ -11,30 +11,27 @@ namespace TodoListDemo.Data
     {
         public static void Inititalize(IServiceProvider serviceProvider)
         {
+            return;
+
             var context = serviceProvider.GetService<TodoListContext>();
-
-
-            if (serviceProvider.GetService<IRelationalDatabaseCreator>().Exists())
+            if (!context.Lists.Any())
             {
-                if (!context.Lists.Any())
-                {
-                    var list = new TodoList {Token = Guid.NewGuid().ToString()};
-                    list.TodoListItems.AddRange(new List<TodoListItem> { 
-                        new TodoListItem()
-                        {
-                            LastModified = DateTime.Now,
-                            IsCompleted = false,
-                            Item = "Test this app!"
-                        },
-                        new TodoListItem()
-                        {
-                            LastModified = DateTime.Now,
-                            IsCompleted = false,
-                            Item = "Can you even mark this completed?"
-                        }});
+                var list = new TodoList {Token = Guid.NewGuid().ToString()};
+                list.TodoListItems.AddRange(new List<TodoListItem> { 
+                    new TodoListItem()
+                    {
+                        LastModified = DateTime.Now,
+                        IsCompleted = false,
+                        Item = "Test this app!"
+                    },
+                    new TodoListItem()
+                    {
+                        LastModified = DateTime.Now,
+                        IsCompleted = false,
+                        Item = "Can you even mark this completed?"
+                    }});
 
-                    context.SaveChanges();
-                }
+                context.SaveChanges();
             }
         }
     }

@@ -1,3 +1,7 @@
+node_modules/
+wwwroot/
+.sass-cache/
+
 #################
 ## Eclipse
 #################
@@ -137,7 +141,7 @@ publish/
 
 # Windows Azure Build Output
 csx
-*.build.csdef
+*.build.csdef 
 
 # Windows Store app package directory
 AppPackages/
