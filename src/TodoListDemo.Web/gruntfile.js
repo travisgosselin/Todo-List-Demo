@@ -14,7 +14,7 @@ module.exports = function (grunt) {
         },
         sass: {
             app: {
-                files: { 'wwwroot/app/app.css': ['Assets/styles.scss'] }
+                files: { 'wwwroot/app/app.css': ['Assets/app/todo.styles.scss'] }
             }
         },
         clean: {
@@ -22,8 +22,8 @@ module.exports = function (grunt) {
         },
         copy: {
           html: {
-              src: 'Assets/index.htm',
-              dest: 'wwwroot/index.htm'
+              src: 'Assets/app/todo.template.htm',
+              dest: 'wwwroot/app/todo.template.htm'
           }  
         },
         watch: {
