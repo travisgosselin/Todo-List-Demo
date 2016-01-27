@@ -36,11 +36,11 @@
                     <div class="card card-inverse card-primary text-xs-center">
                         <div class="card-block">
                             <blockquote class="card-blockquote">
-                                <footer>2 min ago</footer>
-                                <p class="card-text" ng-class="{ 'strike': todo.isComplete }">{{ todo.text }}</p>
+                                <footer>{{ todo.lastModified | date:'short' }}</footer>
+                                <p class="card-text" ng-class="{ 'strike': todo.isCompleted }">{{ todo.item }}</p>
                             </blockquote>
                             <div class="manage-buttons">
-                                <button type="button" class="btn btn-success-outline" ng-class="{ 'btn-warning-outline': todo.isComplete, 'btn-success-outline': !todo.isComplete, }" ng-click="completeTodo(todo)">{{ todo.isComplete ? 'Not Done' : 'Complete' }}</button>
+                                <button type="button" class="btn btn-success-outline" ng-class="{ 'btn-warning-outline': todo.isCompleted, 'btn-success-outline': !todo.isCompleted, }" ng-click="completeTodo(todo)">{{ todo.isComplete ? 'Not Done' : 'Complete' }}</button>
                                 <button type="button" class="btn btn-danger-outline" ng-click="deleteTodo(todo)">Delete</button>
                             </div>
                         </div>

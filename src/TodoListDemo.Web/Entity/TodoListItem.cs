@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 
 namespace TodoListDemo.Web.Entity
 {
@@ -16,6 +17,7 @@ namespace TodoListDemo.Web.Entity
 
         public bool IsCompleted { get; set; }
 
+        [JsonIgnore]
         public TodoList TodoList { get; set; }
     }
 }

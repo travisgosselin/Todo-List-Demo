@@ -3,32 +3,76 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using Microsoft.Data.Entity;
 using TodoListDemo.Web.Entity;
 
 namespace TodoListDemo.Web.Services
 {
-    [Route("api/todo")]
+    [Route("api/[controller]")]
     public class TodoController : Controller
     {
-        [Route("api/todo/{token}")]
-        public TodoList Get(string token)
+        [FromServices]
+        public TodoListContext TodoContext { get; set; }
+
+        [HttpGet]
+        [Route("{token}")]
+        public IActionResult Get(string token)
         {
-            return new TodoList();
+            var todo = TodoContext.Lists.Include(t => t.TodoListItems).FirstOrDefault(t => t.Token == token);
+            if (todo == null)
+            {
+                return new HttpNotFoundResult();
+            }
+
+            return new ObjectResult(todo);
         }
 
-        [Route("api/todo")]
-        public void Post(TodoList todoList)
+        [HttpPost]
+        [Route("{token}")]
+        public TodoListItem Add(string token, TodoListItem item)
         {
+            var foundList = TodoContext.Lists.Include(t => t.TodoListItems).FirstOrDefault(t => t.Token == token);
+            if (foundList == null)
+            {
+                foundList = new TodoList
+                {
+                    Token = token
+                };
+                TodoContext.Lists.Add(foundList);
+            }
+
+            foundList.TodoListItems.Add(item);
+            TodoContext.SaveChanges();
+
+            return item;
         }
 
-        [Route("api/todo")]
-        public void Put(TodoList todoList)
+        [HttpPut]
+        [Route("{token}")]
+        public IActionResult Update(string token, TodoListItem item)
         {
+            var foundList = TodoContext.ListItems.FirstOrDefault(t => t.TodoList.Token == token && t.ListId == item.ListId);
+            if (foundList == null)
+            {
+                return new HttpNotFoundResult();
+            }
+
+            foundList.LastModified = DateTime.Now;
+            foundList.IsCompleted = item.IsCompleted;
+            foundList.Item = item.Item;
+            TodoContext.SaveChanges();
+
+            return new EmptyResult();
         }
 
-        [Route("api/todo/{token}")]
-        public void Delete(string token)
+        [HttpDelete]
+        [Route("{token}")]
+        public void Remove(string token, TodoListItem item)
         {
+            var foundList = TodoContext.ListItems.First(t => t.TodoList.Token == token);
+            TodoContext.ListItems.Remove(foundList);
+
+            TodoContext.SaveChanges();
         }
     }
 }

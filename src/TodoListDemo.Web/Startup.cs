@@ -4,10 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
+using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Mvc.Formatters;
 using Microsoft.Data.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using TodoListDemo.Web.Entity;
 
 namespace TodoListDemo.Web
@@ -29,7 +33,11 @@ namespace TodoListDemo.Web
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            });
+
             services.AddEntityFramework()
                 .AddSqlServer()
                 .AddDbContext<TodoListContext>(options =>
