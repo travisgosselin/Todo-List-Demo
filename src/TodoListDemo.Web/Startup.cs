@@ -8,7 +8,7 @@ using Microsoft.Data.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using TodoListDemo.Data;
+using TodoListDemo.Web.Entity;
 
 namespace TodoListDemo.Web
 {

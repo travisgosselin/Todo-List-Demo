@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace TodoListDemo.Data
+namespace TodoListDemo.Web.Entity
 {
     public class TodoListItem
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string ListItemId { get; set; }
+        public int ListItemId { get; set; }
 
         public int ListId { get; set; }
 
