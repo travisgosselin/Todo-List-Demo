@@ -1,5 +1,5 @@
 ﻿angular.module('todo')
-	.controller('TodoController', ['$scope', '$routeParams', 'TodoService', function($scope, $routeParams, TodoService) {
+	.controller('TodoController', ['$scope', '$routeParams', 'TodoService', '$route', function($scope, $routeParams, TodoService, $route) {
         
 	    var getGuid = function () {
 	        function s4() {
@@ -9,16 +9,16 @@
 	        }
 	        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
               s4() + '-' + s4() + s4() + s4();
-	    }
+	    };
 
-	    $scope.addTodo = function (todoText) {
-	        var todo = { item: todoText, isCompleted: false };
-	        $scope.todos.push(todo);
+        $scope.addTodo = function(todoText) {
+            var todo = { item: todoText, isCompleted: false, lastModified: new Date() };
+            $scope.todos.push(todo);
             $scope.newTodo = '';
             TodoService.add(token, todo).then(function(data) {
                 todo.listItemId = data.data.listItemId;
             });
-        }
+        };
 
         $scope.completeTodo = function(todo) {
             todo.isCompleted = !todo.isCompleted;
@@ -36,6 +36,10 @@
         };
 
         var token = $routeParams.token || getGuid();
+        if (!$routeParams.token) {
+            $route.updateParams({ token: token });
+        }
+
         TodoService.get(token).then(function(data) {
             $scope.todos = data.data.todoListItems;
         }, function(e) {

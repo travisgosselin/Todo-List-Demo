@@ -29,7 +29,7 @@ namespace TodoListDemo.Web.Services
 
         [HttpPost]
         [Route("{token}")]
-        public TodoListItem Add(string token, TodoListItem item)
+        public TodoListItem Add([FromRoute] string token, [FromBody] TodoListItem item)
         {
             var foundList = TodoContext.Lists.Include(t => t.TodoListItems).FirstOrDefault(t => t.Token == token);
             if (foundList == null)
@@ -49,7 +49,7 @@ namespace TodoListDemo.Web.Services
 
         [HttpPut]
         [Route("{token}")]
-        public IActionResult Update(string token, TodoListItem item)
+        public IActionResult Update([FromRoute] string token, [FromBody] TodoListItem item)
         {
             var foundList = TodoContext.ListItems.FirstOrDefault(t => t.TodoList.Token == token && t.ListId == item.ListId);
             if (foundList == null)
@@ -67,7 +67,7 @@ namespace TodoListDemo.Web.Services
 
         [HttpDelete]
         [Route("{token}")]
-        public void Remove(string token, TodoListItem item)
+        public void Remove([FromRoute] string token, [FromBody] TodoListItem item)
         {
             var foundList = TodoContext.ListItems.First(t => t.TodoList.Token == token);
             TodoContext.ListItems.Remove(foundList);
