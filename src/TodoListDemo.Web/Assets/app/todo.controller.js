@@ -14,7 +14,7 @@
         $scope.addTodo = function(todoText) {
             var todo = { item: todoText, isCompleted: false, lastModified: new Date() };
             $scope.todos.push(todo);
-            $scope.newTodo = '';
+            $scope.newTodo = ''; 
             TodoService.add(token, todo).then(function(data) {
                 todo.listItemId = data.data.listItemId;
             });

@@ -9,7 +9,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         uglify: {
             app: {
-                files: { 'wwwroot/app/app.js': ['Assets/app/todo.module.js', 'Assets/**/*.js'] }
+                files: { 'wwwroot/app/app.js': ['Assets/todo.module.js', 'Assets/**/*.js'] }
             }
         },
         sass: {
