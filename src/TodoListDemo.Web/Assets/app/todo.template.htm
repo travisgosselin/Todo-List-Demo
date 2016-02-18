@@ -1,7 +1,7 @@
-﻿<div class="wrapper" ng-controller="TodoController">
+﻿<div class="wrapper" >
 
     <!-- Content -->
-    <section class="add-item" ng-init="todos = [];">
+    <section class="add-item">
         <div class="container">
 
             <!-- Header -->
@@ -19,8 +19,8 @@
                 <div class="col-md-12">
                     <form>
                         <fieldset class="form-group-inline">
-                            <input type="text" class="form-control" placeholder="Todo item..." ng-model="newTodo">
-                            <button type="submit" class="submit contact" ng-click="addTodo(newTodo)">Add</button>
+                            <input type="text" class="form-control" placeholder="Todo item..." ng-model="app.newTodo">
+                            <button type="submit" class="submit contact" ng-click="app.addTodo(app.newTodo)">Add</button>
                         </fieldset>
                     </form>
                 </div>
@@ -31,7 +31,7 @@
              
             <!-- List -->
             <div class="row">
-                <div class="col-md-4" ng-repeat="todo in todos" todo-item="todo" todo-delete="deleteTodo(todo)" todo-complete="completeTodo(todo)"></div>
+                <div class="col-md-4" ng-repeat="todo in app.todos" todo-item="todo" todo-delete="app.deleteTodo(todo)" todo-complete="app.completeTodo(todo)"></div>
             </div>
 
         </div>
