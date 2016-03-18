@@ -9,22 +9,22 @@ module.exports = function (grunt) {
     grunt.initConfig({
         uglify: {
             app: {
-                files: { 'wwwroot/app/app.js': ['Assets/todo.module.js', 'Assets/**/*.js'] }
+                files: { 'wwwroot/dist/app.js': ['Assets/todo.module.js', 'Assets/**/*.js'] }
             }
         },
         sass: {
             app: {
-                files: { 'wwwroot/app/app.css': ['Assets/app/todo.styles.scss'] }
+                files: { 'wwwroot/dist/app.css': ['Assets/app/todo.styles.scss'] }
             }
         },
         clean: {
-           app: ['wwwroot/app']
+           assets: ['wwwroot/assets']
         },
         copy: {
-          html: {
-              src: 'Assets/app/todo.template.htm',
-              dest: 'wwwroot/app/todo.template.htm'
-          }  
+          dev: {
+              src: 'assets/**',
+              dest: 'wwwroot/'
+          }
         },
         watch: {
             scripts: {
@@ -42,5 +42,5 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('default', ['clean', 'uglify', 'sass', 'copy', 'watch']);
+    grunt.registerTask('default', ['clean', 'copy', 'uglify', 'sass', 'copy', 'watch']);
 };

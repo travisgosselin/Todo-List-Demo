@@ -1,8 +1,8 @@
 ﻿@section styles {
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="app/app.css"/>
+    <link rel="stylesheet" href="dist/app.css" />
 
-     <!-- Fonts -->
+    <!-- Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700,900,300' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600,700,900' rel='stylesheet' type='text/css'>
@@ -14,7 +14,16 @@
     <script type="text/javascript" src="lib/lodash/dist/lodash.js"></script>
     <script type="text/javascript" src="lib/angular/angular.js"></script>
     <script type="text/javascript" src="lib/angular-route/angular-route.js"></script>
-    <script type="text/javascript" src="app/app.js"></script>
+
+    <environment names="Development">
+        <script type="text/javascript" src="assets/todo.module.js"></script>
+        <script type="text/javascript" src="assets/directives/todo-item.directive.js"></script>
+        <script type="text/javascript" src="assets/services/todo.service.js"></script>
+        <script type="text/javascript" src="assets/app/todo.controller.js"></script>
+    </environment>
+    <environment names="Production">
+        <script type="text/javascript" src="dist/app.js"></script>
+    </environment>
 }
 
 @section body {

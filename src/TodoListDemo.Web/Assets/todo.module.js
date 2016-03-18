@@ -4,7 +4,7 @@
             .when('/:token?', {
                 controller: 'TodoController',
                 controllerAs: 'app',
-			    templateUrl: 'app/todo.template.htm'
+			    templateUrl: 'assets/app/todo.template.htm'
 			})
 			.otherwise({
 			    redirectTo: '/'
